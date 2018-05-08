@@ -2,6 +2,7 @@ import TipsCore
 import Meow
 
 final class Tip: Model {
+    // MARK: - Properties
     var _id = ObjectId()
     var issue: Int?
     var title: String?
@@ -10,6 +11,7 @@ final class Tip: Model {
     var code: String?
     var comments: [Reference<Comment>]?
     
+    // MARK: - Initializer
     init?(_ object: Tricks.Tip){
         if let value = object.issue {
             issue = value
@@ -45,6 +47,7 @@ final class Tip: Model {
     }
 }
 
+// MARK: - Query
 extension Tip {
     static func find(_ tip: Tricks.Tip) -> Tip? {
         guard let issue = tip.issue, let tip = try? Tip.findOne("issue" == issue) else {
